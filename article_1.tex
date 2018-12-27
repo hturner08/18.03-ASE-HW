@@ -1,0 +1,409 @@
+\documentclass[11pt,a4paper,titlepage]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, fouriernc, mathtools,commath}
+% mathtools for: Aboxed (put box on last equation in align envirenment)
+\usepackage{microtype} %improves the spacing between words and letters
+
+\usepackage{graphicx}
+\graphicspath{ {./pics/} {./eps/}}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COLOR DEFINITIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[svgnames]{xcolor} % Enabling mixing colors and color's call by 'svgnames'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{MyColor1}{rgb}{0.2,0.4,0.6} %mix personal color
+\newcommand{\textb}{\color{Black} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blue}{\color{MyColor1} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blueb}{\color{MyColor1} \usefont{OT1}{lmss}{b}{n}}
+\newcommand{\red}{\color{LightCoral} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\green}{\color{Turquoise} \usefont{OT1}{lmss}{m}{n}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS AND COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    SECTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\usepackage{sectsty}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%set section/subsections HEADINGS font and color
+\sectionfont{\color{MyColor1}}  % sets colour of sections
+\subsectionfont{\color{MyColor1}}  % sets colour of sections
+
+%set section enumerator to arabic number (see footnotes markings alternatives)
+\renewcommand\thesection{\arabic{section}.} %define sections numbering
+\renewcommand\thesubsection{\thesection\arabic{subsection}} %subsec.num.
+
+%define new section style
+\newcommand{\mysection}{
+\titleformat{\section} [runin] {\usefont{OT1}{lmss}{b}{n}\color{MyColor1}} 
+{\thesection} {3pt} {} } 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		CAPTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{caption}
+\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{labelfont={color=Turquoise}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		!!!EQUATION (ARRAY) --> USING ALIGN INSTEAD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%using amsmath package to redefine eq. numeration (1.1, 1.2, ...) 
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%set box background to grey in align environment 
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\@Aboxed}{\boxed{#1#2}}{\colorbox{black!15}{$#1#2$}}{}{}%
+\patchcmd{\@boxed}{\boxed{#1#2}}{\colorbox{black!15}{$#1#2$}}{}{}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DESIGN CIRCUITS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[siunitx, american, smartlabels, cute inductors, europeanvoltages]{circuitikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\makeatletter
+\let\reftagform@=\tagform@
+\def\tagform@#1{\maketag@@@{(\ignorespaces\textcolor{red}{#1}\unskip\@@italiccorr)}}
+\renewcommand{\eqref}[1]{\textup{\reftagform@{\ref{#1}}}}
+\makeatother
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+\DeclareMathOperator{\sininv}{sin^{-1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PREPARE TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\blue Differential Equations \\
+\blueb ASE Assignment Solutions}
+\author{Herbert Turner}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\maketitle
+
+\section{Part $1$}
+\subsection{HW #1}
+{Problem 1A-2
+\begin{itemize}
+\item[b.)] 1
+\item[d.)] Although there are 4 constants in the initial expression, it can be rewritten as $ln(acx^2+(ad+bc)x + bd).$ This allows the number of necessary constants to be reduced to 3.
+\end{itemize}
+}
+{Problem 1A-3b
+\begin{align*}
+\frac{dy}{dx} &= \frac{ye^x}{x} \\
+\int_{1}^{x}\frac{1}{y}\,dy &= \int_{1}^{x}\frac{e^x}{x}\,dx \\
+ln(y)\Big|_2^x &= \int_{1}^{x}\frac{e^x}{x}\,dx \\
+ln(y(x)) \Big|_{1}^{y(x)}&= \int_{1}^{x}\frac{e^x}{x}\,dx \\
+y(x) &= e^\int_{1}^{x}\frac{e^x}{x}\,dx
+\end{align*}}
+{Problem 1A-4a%
+\begin{align*}
+\frac{dy}{dx} &= \frac{xy+x}{y} \\
+\int_{2}^{y(x)}\frac{y}{y+1}\,dy &= \int_{1}^{x}x,dx \\
+\int_{2}^{y(x)}1-\frac{1}{y+1}\,dy &= \frac{x^2}{2}\Big|_2^x\\
+y-ln(y+1)\Big|_2^x &= \frac{y^2}{2} - 2 \\
+y(x) - ln(y(x)+1) &= \frac{x^2}{2} -2
+\end{align*}
+}
+\label{sec:q1sec}
+{Problem 1A-5b
+\begin{align*}
+\int_{}^{}\frac{1}{\sqrt{2}1-v^2}\,dv &= \int_{}^{}\frac{1}{x}\,dx \\
+\sininv{v} &= ln x + C \\ 
+v &= sin(ln x + c)
+\end{align*}
+}
+\subsubsection{Problem 1D-1a}
+For the point of a tangency to be the midpoint of the segment in the first quadrant, the slope of the line must be -y/x. We can now setup a differential equation and solve for y.
+\begin{align*}
+\frac{dy}{dx} &= \frac{-y}{x} \\
+y &= \frac{c}{x}
+\end{align*}
+
+\subsubsection{Problem 1D-5}
+\begin{align*}
+\frac{dT}{dt} &= A(T-20)\\
+\int_{}^{}\frac{1}{A(T-20)} &= \int_{}^{}\,dt \\
+\frac{1}{A}ln(T-20) &= t + C \\
+T-20 &= B*e^{At} \\
+T &= B*e^{At} + 20 \\
+\end{align*}
+Using the initial conditions, we can solve for B at t = 0, and for A at t = 5
+\begin{align*}
+100 &= B + 20   &   B &= 80e^{5A} + 20\\
+B &= 80         &   60 &= 80e^{5A}\\
+&               &  A&=\frac{1}{5}ln(3/4)\\
+\end{align*}
+\subsubsection{Problem 1D-6b}
+\begin{align*}
+mg - kv^2 &= \frac{dv}{dt}m \\
+\frac{-k}{m}(v^2-a^2) &= \frac{dv}{dt}\\
+\int_{}^{}\frac{-k}{m}\,dt &= \int_{}^{}\frac{1}{v^2-a^2}\,dv\\
+\frac{-k}{m}t + C &= \int_{}^{}\frac{1}{2a}(\frac{1}{v-a}-\frac{1}{v+a})\,dv\\
+\frac{-2ak}{m}t + C &= ln|\frac{v-a}{v+a}|\\
+\shortintertext{We can now solve for C since we know at t=0, v= 0}
+0 + C &= ln 1\\
+C  &= 0\\
+\shortintertext{then}
+\frac{a-v}{a+v} &= e^{\frac{-2akt}{m}}\\
+v &= a\frac{1-e^{\frac{-2akt}{m}}}{1+e^{\frac{-2akt}{m}}}
+\end{align*}
+%%% END SECTION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{HW #2}
+\subsubsection{1B-5a}
+\begin{align*}
+\frac{dy}{dx} + \frac{2}{x}y &= 1 \\
+\rho(x) &= e^{2ln|x|}\\
+e^{2ln|x|}\frac{dy}{dx} + \frac{2}{x}ye^{2ln|x|} &= e^{2ln|x}\\
+e^{2ln|x|}y &= \int_{}^{}e^{2ln|x|}\,dx \\
+yx^2 &= \int_{}^{}x^2\,dx \\
+y &= \frac{x}{3} + \frac{C}{x^2}
+\end{align*}
+\subsubsection{1B-6}
+\begin{align*}
+\frac{dx}{dt} + ax &= r(t) \\
+\rho(t) &= e^{at} \\
+e^{at}x(t) + C &= int_{}^{}e^{at}r(t)\,dt \\
+x(t) &= \frac{\int_{}^{}e^{at}r(t)\,dt - C}{e^{at}}\\
+\shortintertext{Because at the given limit the denominator and numerator approach infinity, we can use l'hopital's rule and take the derivative of both sides:}
+\lim{t\to\infty} x(t) &= \lim{t\to\infty} \frac{e^at*r(t)}{ae^{at}} \\
+&= \lim{t\to\infty} \frac{r(t)}{a}\\
+& = 0
+\end{align*}
+\subsubsection{1B-7}
+\begin{align*}
+\frac{dy}{dx} &= \frac{y}{y^3+x} \\
+\frac{dx}{dy} &= y^2 + \frac{x}{y} \\
+\frac{dx}{dy} - \frac{x}{y} &= y^2 \\
+\rho(y) &= e^{-ln|y|} \\
+&= \frac{1}{y}\\
+\frac{1}{y} \frac{dx}{dy} - \frac{1}{y^2}x &= y \\
+\frac{x}{y} &= \frac{y^2}{2} + C \\
+x &= \frac{y^3}{2} + Cy
+\end{align*}
+\subsubsection{1D-4}
+\begin{itemize}
+    \item[a.)] 
+    \begin{align*}
+    \frac{dB}{dt}  &= \lambda _1 A_0e^{-\lambda _1 t} - \lambda _2B(t)\\
+    \rho(t) &= e^{\lambda _2t}\\
+    e^{\lambda _2t}B(t) &= \int_{}^{}\lambda_1A_0e^{(\lambda_2 - \lambda_1)t}\,dt + C\\
+    B(t) &= \frac{\lambda_1A_0}{\lambda_2-\lambda_1}e^{-\lambda_1t}+\frac{C}{e^{\lambda_2t}}\\
+        \shortintertext{Solving for C at the initial condition t = 0, we find}
+    C &= B(0) - \frac{\lambda_1A_0}{\lambda_2-\lambda_1}
+    \end{align*}
+    \item[b.)]
+    \begin{align*}
+        \frac{dB}{dt} &= 0 \\
+        e^{-t} &= \frac{A_0}{2(A_0+B(0)} &= e^{-t} \\
+        t &= -ln(\frac{A_0}{2(A_0 + B_0)})\\
+    \end{align*}
+    If $ A <= 2B_0 $, there is no solution(max of t is at 0).
+\end{itemize}
+\subsubsection{1C-1}
+%%%%%%%%%TODO%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+    \item[d.)]
+    \item[e.)]
+\end{itemize}
+\subsection{HW#3}
+\subsection{HW#4}
+\sfrac{dy}{dx}ubsection{HW#5}
+\subsection{HW#6}
+\subsection {HW#7}
+\subsection{HW#8}
+\subsection{HW#9}
+\subsection{HW#10}
+
+\section{Question 2 Solution}{
+\subsection{Section 1}{
+Consider the circuit on Figure~\ref{fig:q2fig1b}. Now\footnote{Inductor is Short} applying current divider technique one could easily calculate the following currents:\par
+\begin{align*}
+i_1 = \dfrac{40}{500+2k||6k}\cdot\dfrac{2k}{500+2k||6k}\\ \\
+i_2 = \dfrac{40}{500+2k||6k}\cdot\dfrac{6k}{500+2k||6k}\\ \\
+\Aboxed{i_1(0^-)=20\,\si{mA} \qquad i_2(0^-)=60\,\si{mA}}
+\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ctikzset {bipoles/length=.8cm}
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{.5\textwidth}
+\begin{circuitikz}[scale =.6]\draw
+(0,0) to [voltage source = $40\,\si{\volt}$] (0,3)
+to [R = $500~\si{\ohm}$] (2,3)
+to [opening switch, l_= {t>0}] (3,3) -- (4,3)
+node[anchor=south]{$v_x$}
+to [R = $6~\si{\kohm}$, i>_=$i_1$, *-] (7,3)
+to [L, l_= $400~\si{m\henry}$] (7,0) -- (0,0)
+(4,3) to [R, l_= $2~\si{\kohm}$, i>_=$i_2$] (4,0)
+;\end{circuitikz}
+\caption{\green \,Superposed Circuit}
+\label{fig:q2fig1a}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+\begin{circuitikz}[scale =.6]\draw
+(0,0) to [voltage source = $40\,\si{\volt}$] (0,3)
+to [R = $500~\si{\ohm}$] (2,3) -- (4,3)
+to [R = $6~\si{\kohm}$, i>_=$i_1$] (6,3)
+to [L, l= $400~\si{m\henry}$] (6,0) -- (0,0)
+(3,3) node[anchor=south]{$v_x$}
+to [R, l_= $2~\si{\kohm}$, i>_=$i_2$,*-] (3,0)
+;\end{circuitikz}
+\caption{\green \,Past Time Circuit}
+\label{fig:q2fig1b}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\begin{circuitikz}[scale =.6]\draw
+(0,0) to [R = $8\,\si{\kohm}$, i_<=$i_2$,-*] (0,3) -- (2,3) 
+node[anchor=south]{$v_L$}
+to [L = $400\,\si{m\henry}$, i>^=$i_1$,*-] (2,0) -- (0,0)
+;\end{circuitikz}
+\caption{\green \,Future Time Circuit}
+\label{fig:q2fig1c}
+\end{subfigure}
+\caption{\green Question 2 Circuit}
+\label{fig:q2fig1}
+\end{figure}
+}
+%%% END SUBSECTION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 2}{
+Assuming continuity in the inductor current $i_1(0^-)=i_1(0^+)=20\,\si{\mA}$ on Figure~\ref{fig:q2fig1c}, where $i_1=-i_2$, thus, setting $i_1(0^+)=-i_2(0^+)=20\,\si{\mA}$ we get the currents
+\begin{align*}
+\Aboxed{i_1(0^+)=20\,\si{mA} \qquad i_2(0^+)=-20\,\si{\mA}}
+\end{align*}
+}
+%%% END SUBSECTION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 3}{It's obvious, that circuits \ref{fig:q2fig1b} and \ref{fig:q2fig1c} are equivalent to the one on Figure~\ref{fig:q1fig} (Page~\pageref{fig:q1fig}) with $\tau=50~\si{\ms}$ and $I_0=V_0/R_{eq}=20~\si{\mA}$:
+\begin{align}
+\Aboxed{\dot{i_L}(t)+\tfrac{R}{L}i_L(t)&=\tfrac{R}{L}I_0 \quad,\, t>0}
+\end{align}
+}
+%%% END SUBSECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 4}{Adopting ZIR\footnote{Since, there is no source in the circuit} solution~\eqref{eq:7} 
+\begin{align*}
+\Aboxed{i_1(t)&=i_1(0^+)\exp\left({\dfrac{-t}{\tau}}\right) \quad, t>0} \\
+\Aboxed{i_2(t)&=-i_1(t)}
+\end{align*}
+}
+%%% END SUBSECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}\label{sec:q2sec}
+%%% END SECTION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Question 3 Solution}{
+\subsection{Section 1}{
+The voltage drop on the capacitor\footnote{Open-Circuited Capacitor } on Figure~\ref{fig:q3fig1b} as follows
+\begin{align}
+\Aboxed{v_C(0^-)&=15~\si{\mA} \cdot 2.4~\si{\kohm}=36~\si{\volt}  \label{eq:8}}
+\end{align}
+\ctikzset {bipoles/length=.8cm}
+\begin{figure}[!htb]
+\begin{subfigure}{\textwidth}
+\begin{circuitikz}[scale =.8]\draw
+(0,0) to [current source = $15\,\si{\mA}$] (0,3) -- (2,3)
+to [R, l= $2.4\,\si{\kohm}$] (2,0) -- (4,0)
+to [C,l_=$0.25\,\si{\micro\farad}$] (4,2.5)
+to[short, -o](3.3,3.3)
+(4,3)node[anchor=south]{t=0}
+node[ocirc] (A) at (3,3) {}
+node[ocirc] (B) at (5,3) {}
+(B) to [open, v=${}$] (A)
+(5,3)to[short, o-](6,3)--(6,5)
+to [R=$25\,\si{\kohm}$] (8,5)--(8,3)
+to [cI,l_=$\alpha \cdot v_{\phi}$] (6,3)
+(2,3)to[short,-o](3,3)
+(8,3)--(9,3)
+to [R, l_= $15~\si{\kohm}$,v^=$v_{\phi}$] (9,0) -- (0,0)
+;\end{circuitikz}
+\caption{\green \,Superposed Circuit}
+\label{fig:q3fig1a}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+\begin{circuitikz}[scale =1]\draw
+(0,0) to [current source = $15~\si{\mA}$] (0,2) -- (2,2)
+to [R, l_= $2.4~\si{\kohm}$] (2,0)
+(2,2) -- (4,2) 
+node[ocirc] (A) at (4,0) {}
+node[ocirc] (B) at (4,2) {}
+(B) to [open, v^=${v_c}$] (A)
+(0,0)--(4,0)
+;\end{circuitikz}
+\caption{\green \,Past Time Circuit}
+\label{fig:q3fig1b}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\begin{circuitikz}[scale =.6]\draw
+node[ocirc] (A) at (0,0) {}
+node[ocirc] (B) at (0,3) {}
+(B) to [open, v=${v_t}$] (A)
+(0,3) to [short, i=${i_t}$](1,3)--(2.7,3)--(2.7,4.5) 
+to [R, l_= $25~\si{\kohm}$] (6.5,4.5)--(6.5,2.2)
+to [cI, l= $\alpha \cdot v_{\phi}$] (2.7,2.2)--(2.7,3)
+(6.5,3)--(8,3) to [R, l_= $15~\si{\kohm}$,v^=$v_{\phi}$] (8,0)--(0,0)
+;\end{circuitikz}
+\caption{\green \,Future Time Circuit}
+\label{fig:q3fig1c}
+\end{subfigure}
+\caption{\green Question 3 Circuit}
+\label{fig:q3fig1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+%%% END SUBSECTION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 2}{
+Replacing capacitor with a test voltage, as shown on Figure~\ref{fig:q3fig1c}, allows input resistance calculation $R_{in}=\dfrac{v_t}{i_t}$
+\begin{align}
+v_t-v_{\phi}&=25k\alpha \cdot v_{\phi} \nonumber \\
+v_t=(1+25k\alpha) \cdot v_{\phi}&=15k(1+25k\alpha) \cdot i_t \nonumber \\
+\Aboxed{R_{in}(C)&=15k(1+25k\alpha) \label{eq:10}}
+\end{align}
+}
+%%% END SUBSECTION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 3}{Given circuit's time constant $\tau=R \cdot C=25~\si{ms}$ requires resistor $R=100~\si{\kohm}$. Setting into~\eqref{eq:10} leads to the value of $\alpha$-parameter
+\begin{align*}
+\Aboxed{\alpha \approx 2.26 \cdot 10^{-4}}
+\end{align*}
+}
+%%% END SUBSECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section 4}{As before\footnote{Due to circuits analogy} using ZIR solution~\eqref{eq:7} adapted for voltages, where $\tau=25~\si{ms}$ and initial condition of the capacitor\footnote{Continuity in voltage drop} $v_C(0^-)=v_C(0^+)=36~\si{\volt}$
+\begin{align*}
+\begin{cases}
+\Aboxed{v_C(t)&=v_C(0^+)\exp\left({\dfrac{-t}{\tau}}\right) \quad, t\geqslant0} \\
+\Aboxed{v_C(t)&=v_C(0^-) \hspace{5.1em}, t<0} \\
+\end{cases}
+\end{align*}
+}
+%%% END SUBSECTION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}\label{sec:q3sec}
+%%% END SECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}
